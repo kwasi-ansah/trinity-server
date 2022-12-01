@@ -18,7 +18,6 @@ const ContactUsSchema = new mongoose.Schema<IContactUs>({
     },
     details: {
         type: String,
-        required: true
     }
 })
 
