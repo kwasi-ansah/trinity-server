@@ -31,7 +31,20 @@ const SendMail = async (contact: IContactUs) => {
                 <p>${contact.email}</p>`,
     });
 
-    console.log("Message sent: %s", info.messageId);
+    // follow up message to sender
+    let sender = await transporter.sendMail({
+        from: `"info trinity 👻" <${process.env.INFO_EMAIL}>`,
+        to: contact.email,
+        subject: contact.subject,
+        text: contact.details,
+        html: `<h4>Hi, ${contact.name}</h4>
+                <p>Cleverbench has recieved your email we would get in touch with you soon
+                <p>Can you please reply this email with your project details and requirements</p>
+                </p>`,
+    });
+
+    console.log("Info Message sent: %s", info.messageId);
+    console.log("Sender Message sent: %s", sender.messageId);
 
 }
 

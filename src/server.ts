@@ -20,7 +20,7 @@ const port = process.env.SERVER_PORT || process.env.PORT
 const startServer = () => {
     app.use(cors());
     app.use(bodyParser.json());
-    app.get('/', (req, res) => {
+    app.get('/', (_, res) => {
         res.send({ message: "It worked" })
     })
     app.use('/contact-us', ContactUsRouter);
