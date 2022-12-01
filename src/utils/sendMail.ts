@@ -11,15 +11,15 @@ const SendMail = async (contact: IContactUs) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASSWORD,
+            user: process.env.ADMIN_EMAIL,
+            pass: process.env.ADMIN_EMAIL_PASSWORD,
         },
     });
 
 
     let info = await transporter.sendMail({
-        from: `"info trinity 👻" <${process.env.INFO_EMAIL}>`,
-        to: "trinityy041@gmail.com",
+        from: `"info trinity 👻" <${process.env.ADMIN_EMAIL}>`,
+        to: `${process.env.ADMIN_EMAIL}`,
         subject: contact.subject,
         text: contact.details,
         html: `<h4>Hi, Trinity</h4>
@@ -33,9 +33,9 @@ const SendMail = async (contact: IContactUs) => {
 
     // follow up message to sender
     let sender = await transporter.sendMail({
-        from: `"info trinity 👻" <${process.env.INFO_EMAIL}>`,
+        from: `"info trinity 👻" <${process.env.ADMIN_EMAIL}>`,
         to: contact.email,
-        subject: contact.subject,
+        subject: "Cleverbench ContactUs",
         text: contact.details,
         html: `<h4>Hi, ${contact.name}</h4>
                 <p>Cleverbench has recieved your email we would get in touch with you soon
