@@ -7,7 +7,10 @@ import 'dotenv/config';
 
 
 const db_connection = process.env.DB_CONNECTION || ""
-const db = mongoose.connect(db_connection, () => {
+const db = mongoose.connect(db_connection, (err) => {
+    if (err) {
+        throw (err);
+    }
     console.log('💿Database connection established')
 })
 
